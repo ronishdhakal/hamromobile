@@ -13,15 +13,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     ports:
-      - "5433:5432"  # use 5433 on host to avoid conflict
+      - "5433:5432"
 
   web:
     build: .
     command: gunicorn HamroMobile.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
     ports:
-      - "8002:8000"  # use 8002 on host to avoid conflict
+      - "8002:8000"
     env_file:
       - .env
     depends_on:

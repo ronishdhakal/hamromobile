@@ -10,7 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-k%5re2u#=zkwlv0h91z%t_4g=gz-kg2_60j8=q$60ff-raf&g6'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['base.hamromobile.com', '127.0.0.1', 'localhost', '*']
+
+# Tell Django it’s behind a proxy (Nginx) and to trust HTTPS header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Django REST Framework
 REST_FRAMEWORK = {
